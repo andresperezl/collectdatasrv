@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  experiment_id: 
+  x: 9.99
+  'y': 9.99
+  z: 9.99
+  ts: 2015-02-26 10:48:30
+
+two:
+  experiment_id: 
+  x: 9.99
+  'y': 9.99
+  z: 9.99
+  ts: 2015-02-26 10:48:30
