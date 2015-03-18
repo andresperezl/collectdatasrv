@@ -11,9 +11,9 @@ class ExperimentController < ApplicationController
   def show
   	@ex = Experiment.find(experiment_params[:id])
   	@ex.process unless @ex.processed?
-  	@phone_acc = @ex.phone_acc_data.order(ts: :asc).pluck(:ts, :x, :y, :z)
-  	@phone_gyr = @ex.phone_gyr_data.order(ts: :asc).pluck(:ts, :x, :y, :z)
-  	@strap_acc = @ex.strap_acc_data.order(ts: :asc).pluck(:ts, :x, :y, :z)
+  	@phone_acc = @ex.phone_acc_data.order(ts: :asc).pluck(:ts, :energy, :filtered_energy)
+  	@phone_gyr = @ex.phone_gyr_data.order(ts: :asc).pluck(:ts, :energy, :filtered_energy)
+  	@strap_acc = @ex.strap_acc_data.order(ts: :asc).pluck(:ts, :energy, :filtered_energy)
   end
 
 

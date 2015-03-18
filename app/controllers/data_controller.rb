@@ -17,6 +17,6 @@ class DataController < ApplicationController
 
   private
   	def data_params
-  		params.permit(strap: [:experiment_id, :x, :y, :z, :ts], phone_acc: [:experiment_id, :x, :y, :z, :ts], phone_gyr: [:experiment_id, :x, :y, :z, :ts] )
+  		params.permit(strap: [:experiment_id, :x, :y, :z, :ts], phone_acc: [:experiment_id, :x, :y, :z, :energy, :ts], phone_gyr: [:experiment_id, :x, :y, :z, :energy, :ts] )
   	end
 end

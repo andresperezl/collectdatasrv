@@ -11,10 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150307234937) do
+ActiveRecord::Schema.define(version: 20150318010318) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "experiment_stats", force: :cascade do |t|
+    t.integer  "experiment_id"
+    t.integer  "phone_acc_rate"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "phone_gyr_rate"
+    t.integer  "strap_acc_rate"
+  end
+
+  add_index "experiment_stats", ["experiment_id"], name: "index_experiment_stats_on_experiment_id", using: :btree
 
   create_table "experiments", force: :cascade do |t|
     t.string   "note"
@@ -28,7 +39,9 @@ ActiveRecord::Schema.define(version: 20150307234937) do
     t.float   "x"
     t.float   "y"
     t.float   "z"
-    t.integer "ts",            limit: 8
+    t.integer "ts",              limit: 8
+    t.float   "energy"
+    t.float   "filtered_energy"
   end
 
   add_index "phone_acc_data", ["experiment_id"], name: "index_phone_acc_data_on_experiment_id", using: :btree
@@ -38,7 +51,9 @@ ActiveRecord::Schema.define(version: 20150307234937) do
     t.float   "x"
     t.float   "y"
     t.float   "z"
-    t.integer "ts",            limit: 8
+    t.integer "ts",              limit: 8
+    t.float   "energy"
+    t.float   "filtered_energy"
   end
 
   add_index "phone_gyr_data", ["experiment_id"], name: "index_phone_gyr_data_on_experiment_id", using: :btree
@@ -48,11 +63,14 @@ ActiveRecord::Schema.define(version: 20150307234937) do
     t.float   "x"
     t.float   "y"
     t.float   "z"
-    t.integer "ts",            limit: 8
+    t.integer "ts",              limit: 8
+    t.float   "energy"
+    t.float   "filtered_energy"
   end
 
   add_index "strap_acc_data", ["experiment_id"], name: "index_strap_acc_data_on_experiment_id", using: :btree
 
+  add_foreign_key "experiment_stats", "experiments"
   add_foreign_key "phone_acc_data", "experiments"
   add_foreign_key "phone_gyr_data", "experiments"
   add_foreign_key "strap_acc_data", "experiments"
